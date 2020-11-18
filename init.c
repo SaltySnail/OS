@@ -311,13 +311,17 @@ void blink()
     //*GPFSEL3 = (*GPFSEL3 & ~(7 << 15)) | (1 << 15);
      setFSEL(GPFSEL1, 0b001, 7); //actled 
      //setFSEL(GPFSEL1, 0b001, 8); //actled
+     UI32 gpset0 = get32(GPSET0);
+     gpset0 ^= 0b00000000000000100000000000000000;
+     UI32 gpclr0 = get32(GPCLR0);
+     gpclr0 ^= 0b00000000000000100000000000000000;
     while (1) 
     {
 	   //*GPSET0 = 1 << (31-17);
-	   put32(GPSET0, 1 << (32-17));//*GPSET0);
+	   put32(GPSET0, gpset0);//*GPSET0);
         for (i = 0; i < BUSY_WAIT_N; ++i) { BUSY_WAIT; }
 	   //*GPCLR0 = (UI32)0b11111111111111111111111111111111;//1 << (31-17);
-	   put32(GPCLR0, 1 << (32-17));//*GPCLR0);
+	   put32(GPCLR0, gpclr0);//*GPCLR0);
         for (i = 0; i < BUSY_WAIT_N; ++i) { BUSY_WAIT; }
    	printsln(" Blink");
 	printMem(GPFSEL1);
@@ -341,4 +345,3 @@ void printMem(volatile UI32* address)
     ui32ToHexStr(data, data_string);
     printsln(data_string);
 }
-
