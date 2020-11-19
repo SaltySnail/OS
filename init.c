@@ -319,17 +319,18 @@ void blink()
      setFSEL(GPFSEL2, 0b001, 4); //gpio 24 oranje
      setFSEL(GPFSEL2, 0b001, 3); //gpio 23 rood
 
-	   gpclr0 = get32(GPCLR0);
-           gpclr0 ^= 0b11111111111111111111111111111111;
+	   //gpclr0 = get32(GPCLR0);
+           //gpclr0 ^= 0b11111111111111111111111111111111;
 	   //clear stoplicht 1 rood en 2 groen  0x0BC20000
-	   put32(GPCLR0, gpclr0);
+	   //put32(GPCLR0, gpclr0);
 
      //setFSEL(GPFSEL1, 0b001, 8); //actled
     while (1) 
     {
 	   gpset0 = get32(GPSET0);
            gpset0 &= (~0b00001011110000100000000000000000); //reset set register
-           gpset0 |= 0b00000000000000100000000000000000; //gpio 17
+           gpset0 |= 0b00000010000000100000000000000000; //gpio 17 & 25
+	   	   //0b00000010000000100000000000000000; //stoplicht 1 op rood 2 op groen
            //0b00000001000000100000000000000000; //stoplicht 1 op rood 2 op oranje 0x01020000
 	   put32(GPSET0, gpset0);
 
@@ -346,7 +347,8 @@ void blink()
 	   
 	   gpset0 = get32(GPSET0);
            gpset0 &= (~0b00001011110000100000000000000000);
-           gpset0 |= 0b00001000000000000000000000000000; //gpio 27 oranje 1
+           gpset0 |= 0b00000001000000100000000000000000; //stoplicht 1 op rood 2 op oranje
+		   //0b00001000000000000000000000000000; //gpio 27 oranje 1
            //0b00000001000000100000000000000000; //stoplicht 1 op rood 2 op oranje 0x01020000
 	   put32(GPSET0, gpset0);
 	   
@@ -361,11 +363,29 @@ void blink()
 	   
 	   gpset0 = get32(GPSET0);
            gpset0 &= (~0b00001011110000100000000000000000);
-           gpset0 |= 0b00000000010000000000000000000000; //gpio 22
+           gpset0 |=   0b00000000100000100000000000000000; //stoplicht 1 op rood 2 op rood
+		  //0b00000000100000000000000000000000; //gpio 23
+           //0b00000001000000100000000000000000; //stoplicht 1 op 
+	   //rood 2 op oranje 0x01020000
+	   put32(GPSET0, gpset0);
+	   
+	   
+	printsln("3");
+	   for (i = 0; i < 2000000; ++i) { BUSY_WAIT; }
+	   
+	   gpclr0 = get32(GPCLR0);
+           //gpclr0 |= 0b11110100001111011111111111111111;
+           gpclr0 |= 0b00001011110000100000000000000000;
+	   put32(GPCLR0, gpclr0);
+	   
+	   gpset0 = get32(GPSET0);
+           gpset0 &= (~0b00001011110000100000000000000000);
+           gpset0 |= 0b00000000110000000000000000000000; //stoplicht 1 op groen 2 op rood
+		   //0b00000000010000000000000000000000; //gpio 22
            //0b00000001000000100000000000000000; //stoplicht 1 op rood 2 op oranje 0x01020000
 	   put32(GPSET0, gpset0);
 	    
-	printsln("3");
+	printsln("4");
 	   for (i = 0; i < 2000000; ++i) { BUSY_WAIT; }
 
 	   gpclr0 = get32(GPCLR0);
@@ -375,15 +395,38 @@ void blink()
 	   
 	   gpset0 = get32(GPSET0);
            gpset0 &= (~0b00001011110000100000000000000000);
-           gpset0 |= 0b00000000100000000000000000000000; //gpio 23
+           gpset0 |= 0b00001000100000000000000000000000; //stoplicht 1 op oranje 2 op rood
+		  //0b00000000100000000000000000000000; //gpio 23
            //0b00000001000000100000000000000000; //stoplicht 1 op 
 	   //rood 2 op oranje 0x01020000
 	   put32(GPSET0, gpset0);
 	   
 	   
-	printsln("4");
+	printsln("5");
 	   for (i = 0; i < 2000000; ++i) { BUSY_WAIT; }
 	   
+	   gpclr0 = get32(GPCLR0);
+           //gpclr0 |= 0b11110100001111011111111111111111;
+           gpclr0 |= 0b00001011110000100000000000000000;
+	   put32(GPCLR0, gpclr0);
+	   
+	   gpset0 = get32(GPSET0);
+           gpset0 &= (~0b00001011110000100000000000000000);
+           gpset0 |=   0b00000000100000100000000000000000; //stoplicht 1 op rood 2 op rood
+		  //0b00000000100000000000000000000000; //gpio 23
+           //0b00000001000000100000000000000000; //stoplicht 1 op 
+	   //rood 2 op oranje 0x01020000
+	   put32(GPSET0, gpset0);
+	   
+	   
+	printsln("6");
+	   for (i = 0; i < 2000000; ++i) { BUSY_WAIT; }
+	   
+	   gpclr0 = get32(GPCLR0);
+           //gpclr0 |= 0b11110100001111011111111111111111;
+           gpclr0 |= 0b00001011110000100000000000000000;
+	   put32(GPCLR0, gpclr0);
+	 /*  
 	   gpclr0 = get32(GPCLR0);
            //gpclr0 |= 0b11110100001111011111111111111111;
            gpclr0 |= 0b00001011110000100000000000000000;
@@ -420,7 +463,7 @@ void blink()
 		   //0b00001011110000100000000000000000;
 	   //clear stoplicht 1 rood en 2 groen  0x0BC20000
 	   //put32(GPCLR0, gpclr0);
-	   
+	   */
 	   /*
      	   gpclr0 = get32(GPCLR0);
            gpclr0 |= 0x0BC20000;//0b00001011110000100000000000000000; //clear stoplicht 1 rood en 2 groen 
@@ -429,7 +472,8 @@ void blink()
 	   gpset0 = get32(GPSET0);
 	   //tmp = 1 << 17;
 	   //gpset0 |= tmp;
-           gpset0 ^= 0x02020000;// 0b00000010000000100000000000000000; //stoplicht 1 op rood 2 op groen
+           gpset0 ^= 0x02020000;// 
+	   0b00000010000000100000000000000000; //stoplicht 1 op rood 2 op groen
 	   put32(GPSET0, gpset0);
 	   printsln("1: Rood 2: Groen");
 	   printMem(GPSET0);
@@ -442,7 +486,8 @@ void blink()
 	   //printMem(GPCLR0);
 	   
 	   gpset0 = get32(GPSET0);
-           gpset0 ^= 0x01020000;//0b00000001000000100000000000000000; //stoplicht 1 op rood 2 op oranje
+           gpset0 ^= 0x01020000;
+	   //0b00000001000000100000000000000000; //stoplicht 1 op rood 2 op oranje
 	   put32(GPSET0, gpset0);
 	   printsln("1: Rood 2: Oranje");
 
@@ -454,7 +499,8 @@ void blink()
 	   put32(GPCLR0, gpclr0);
 
      	   gpset0 = get32(GPSET0);
-           gpset0 ^= 0x00C00000;//0b00000000110000000000000000000000; //stoplicht 1 op groen 2 op rood
+           gpset0 ^= 0x00C00000;
+	   //0b00000000110000000000000000000000; //stoplicht 1 op groen 2 op rood
 	   put32(GPSET0, gpset0);
 	   printsln("1: Groen 2: Rood");
 
@@ -466,7 +512,8 @@ void blink()
 	   put32(GPCLR0, gpclr0);
      	   
 	   gpset0 = get32(GPSET0);
-           gpset0 ^= 0x08800000;//0b00001000100000000000000000000000; //stoplicht 1 op oranje 2 op rood
+           gpset0 ^= 0x08800000;
+	   //0b00001000100000000000000000000000; //stoplicht 1 op oranje 2 op rood
 	   put32(GPSET0, gpset0);
 	   printsln("1: Oranje 2: Rood");
 	//printsln(" Blink");
