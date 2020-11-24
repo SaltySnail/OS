@@ -74,7 +74,7 @@ void ui32ToDecStr(UI32 data, char *str);
 */
 void start() {
   asm volatile (
-    " mov  sp, #0x00010000     \n " // set stack pointer
+    " mov  sp, #0x00100000     \n " // set stack pointer
     " mrs  x0, midr_el1        \n " // get pi version id
     " and  x0, x0, #0x0000FFF0 \n " // mask out other bits
     " lsr  x0, x0, #4          \n " // shift bits to end
