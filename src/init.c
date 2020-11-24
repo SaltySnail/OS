@@ -30,6 +30,7 @@
 
 #include "eos.h"
 #include "dev-video.h"
+#include "print.h"
 
 #define EOS_PI3ID         0x0D03
 #define EOS_PI4ID         0x0D08
@@ -56,11 +57,11 @@ UI64 eosBase;
 
 void stage2(UI32 piId);
 void hang();
-void putcs(char c);
+//void putcs(char c);
 char getcs();
 void clearsScreen();
-void prints(char* str);
-void printsln(char* str);
+//void prints(char* str);
+//void printsln(char* str);
 UI32 stringCopy(char *source, char *destination);
 void ui32ToHexStr(UI32 data, char *str);
 void ui32ToBinStr(UI32 data, char *str);
@@ -101,12 +102,12 @@ void stage2(UI32 piId) {
 void hang() {
   for(;;) asm volatile ( " wfe \n "); // hang
 }
-
+/*
 void putcs(char c) {
   while(get32(EOS_UART0_FR) & BIT(5));
   put32(EOS_UART0_DR, c);
 }
-
+*/
 char getcs() {
   while(get32(EOS_UART0_FR) & BIT(4));
 
@@ -120,7 +121,7 @@ void clearsScreen() {
   putcs((char)EOS_ASCII_ESC);
   prints(EOS_TERM_HOME);
 }
-
+/*
 void prints(char* str) {
   for (UI32 i = (UI32)0; str[i] != '\0'; i ++) {
     putcs((char)str[i]);
@@ -131,7 +132,7 @@ void printsln(char* str) {
   prints(str);
   putcs('\r');
   putcs('\n');
-}
+}*/
 
 UI32 stringCopy(char *source, char *destination) {
   UI32 i = 0;

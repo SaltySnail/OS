@@ -33,7 +33,12 @@
 
 #include "eos.h"
 
+
+extern void gfx_print(char *string, font *font, UI32 virtualWidth, UI32 virtualHeight, UI32 *frameBuffer);
+extern void init_character_set(font *font);
+extern void init_character(letter *teken, UI32 bit0, UI32 bit1, UI32 bit2, UI32 bit3, UI32 bit4, UI32 bit5, UI32 bit6, UI32 bit7, UI32 bit8, UI32 bit9, UI32 bit10, UI32 bit11, UI32 bit12, UI32 bit13, UI32 bit14, UI32 bit15, UI32 bit16, UI32 bit17, UI32 bit18, UI32 bit19, UI32 bit20, UI32 bit21, UI32 bit22, UI32 bit23, UI32 bit24, UI32 bit25, UI32 bit26, UI32 bit27, UI32 bit28, UI32 bit29, UI32 bit30, UI32 bit31, UI32 bit32, UI32 bit33, UI32 bit34);
 extern void splash_screen(UI32 *frameBuffer, UI32 virtualWidth, UI32 virtualHeight);
+
 extern void devVideoInit(UI32 width, UI32 height);
 
 #endif

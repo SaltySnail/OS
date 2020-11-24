@@ -68,8 +68,12 @@ typedef struct _bit_ {
 } bit;
 
 typedef struct _letter_ {
-	bit bitmap[5][7];
+	UI32 bitmap[7][5];
 } letter;
+
+typedef struct _font_ {
+	letter *tekens[95];
+}font;
 
 extern UI64 eosBase;
 
