@@ -83,6 +83,7 @@ void init_character(letter *teken, UI32 bit0, UI32 bit1, UI32 bit2, UI32 bit3, U
 
 void init_character_set(font *font)
 {
+	/*
 	init_character(font->tekens[0],
 	0, 0, 0, 0, 0,
     	0, 0, 0, 0, 0,
@@ -91,7 +92,7 @@ void init_character_set(font *font)
     	0, 0, 0, 0, 0,
     	0, 0, 0, 0, 0,
     	0, 0, 0, 0, 0);
-/*
+
 	init_character(font->tekens[1],
     0  , 0  , 1  , 0  , 0  ,
     0  , 0  , 1  , 0  , 0  ,
@@ -983,7 +984,7 @@ void gfx_print(char *string, font *font, UI32 virtualWidth, UI32 virtualHeight, 
 			{
 				for (x = 0; x < 5; x++)
 				{
-					if (font->tekens[0]->bitmap[y][x] == 1)
+					if (font->tekens[0].bitmap[y][x] == 1)
 					{
 						printsln("Teken 0: ");
 					/*	prints("x: ");
@@ -1003,7 +1004,7 @@ void gfx_print(char *string, font *font, UI32 virtualWidth, UI32 virtualHeight, 
 			{
 				for (x = 0; x < 5; x++)
 				{
-					if (font->tekens[1]->bitmap[y][x] == 1)
+					if (font->tekens[1].bitmap[y][x] == 1)
 					{
 						printsln("Teken 1: ");
 					/*	prints("x: ");
@@ -1164,10 +1165,12 @@ void devVideoInit(UI32 width, UI32 height) {
 
   splash_screen(frameBuffer, virtualWidth, virtualHeight);
   font font;
+  
   //init_character_set(&font);
   prints("Joehoe \n");
   
-  init_character(font->tekens[1],
+  /*
+  init_character(font.tekens[1],
     0  , 0  , 1  , 0  , 0  ,
     0  , 0  , 1  , 0  , 0  ,
     0  , 0  , 1  , 0  , 0  ,
@@ -1175,8 +1178,57 @@ void devVideoInit(UI32 width, UI32 height) {
     0  , 0  , 1  , 0  , 0  ,
     0  , 0  , 0  , 0  , 0  ,
     0  , 0  , 1  , 0  , 0 );
-
-
+*/
+  /*font.tekens[1].bitmap = {
+	  {0,0,1,0,0},
+	  {0,0,1,0,0},
+	  {0,0,1,0,0},
+	  {0,0,1,0,0},
+	  {0,0,1,0,0},
+	  {0,0,0,0,0},
+	  {0,0,1,0,0}
+  };*/
+  font.tekens[1].bitmap[0][0] = 0;
+ font.tekens[1].bitmap[0][1] = 0; 
+ font.tekens[1].bitmap[0][2] = 1; 
+ font.tekens[1].bitmap[0][3] = 0; 
+ font.tekens[1].bitmap[0][4] = 0; 
+ font.tekens[1].bitmap[1][0] = 0; 
+ font.tekens[1].bitmap[1][1] = 0; 
+ font.tekens[1].bitmap[1][2] = 1; 
+ font.tekens[1].bitmap[1][3] = 0; 
+ font.tekens[1].bitmap[1][4] = 0; 
+ font.tekens[1].bitmap[2][0] = 0; 
+ font.tekens[1].bitmap[2][1] = 0; 
+ font.tekens[1].bitmap[2][2] = 1; 
+ font.tekens[1].bitmap[2][3] = 0; 
+ font.tekens[1].bitmap[2][4] = 0; 
+ font.tekens[1].bitmap[3][0] = 0; 
+ font.tekens[1].bitmap[3][1] = 0; 
+ font.tekens[1].bitmap[3][2] = 1; 
+ font.tekens[1].bitmap[3][3] = 0; 
+ font.tekens[1].bitmap[3][4] = 0; 
+ font.tekens[1].bitmap[4][0] = 0; 
+ font.tekens[1].bitmap[4][1] = 0; 
+ font.tekens[1].bitmap[4][2] = 1; 
+ font.tekens[1].bitmap[4][3] = 0; 
+ font.tekens[1].bitmap[4][4] = 0; 
+ font.tekens[1].bitmap[5][0] = 0; 
+ font.tekens[1].bitmap[5][1] = 0; 
+ font.tekens[1].bitmap[5][2] = 1; 
+ font.tekens[1].bitmap[5][3] = 0; 
+ font.tekens[1].bitmap[5][4] = 0; 
+ font.tekens[1].bitmap[6][0] = 0; 
+ font.tekens[1].bitmap[6][1] = 0; 
+ font.tekens[1].bitmap[6][2] = 0; 
+ font.tekens[1].bitmap[6][3] = 0; 
+ font.tekens[1].bitmap[6][4] = 0; 
+ font.tekens[1].bitmap[7][0] = 0; 
+ font.tekens[1].bitmap[7][1] = 0; 
+ font.tekens[1].bitmap[7][2] = 1; 
+ font.tekens[1].bitmap[7][3] = 0; 
+ font.tekens[1].bitmap[7][4] = 0; 
+  
 
   char my_string[] = "! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !  ! ! ! ! !  !! !  ! ! ! !  !!!!! ! ! ! ! ! !!!!!!!!!!!!!!!!!!!!!!!!!!";
   gfx_print(my_string, &font, virtualWidth, virtualHeight, frameBuffer);

@@ -72,7 +72,7 @@ typedef struct _letter_ {
 } letter;
 
 typedef struct _font_ {
-	letter *tekens[95];
+	letter tekens[95];
 }font;
 
 extern UI64 eosBase;
