@@ -91,7 +91,7 @@ void init_character_set(font *font)
     	0, 0, 0, 0, 0,
     	0, 0, 0, 0, 0,
     	0, 0, 0, 0, 0);
- 
+/*
 	init_character(font->tekens[1],
     0  , 0  , 1  , 0  , 0  ,
     0  , 0  , 1  , 0  , 0  ,
@@ -958,6 +958,7 @@ void init_character_set(font *font)
     0  , 0  , 0  , 0  , 0 ,
     0  , 0  , 0  , 0  , 0 ,
     0  , 0  , 0  , 0  , 0 );
+    */
 }
 
 void gfx_print(char *string, font *font, UI32 virtualWidth, UI32 virtualHeight, UI32 *frameBuffer)
@@ -1163,8 +1164,20 @@ void devVideoInit(UI32 width, UI32 height) {
 
   splash_screen(frameBuffer, virtualWidth, virtualHeight);
   font font;
-  init_character_set(&font);
+  //init_character_set(&font);
   prints("Joehoe \n");
+  
+  init_character(font->tekens[1],
+    0  , 0  , 1  , 0  , 0  ,
+    0  , 0  , 1  , 0  , 0  ,
+    0  , 0  , 1  , 0  , 0  ,
+    0  , 0  , 1  , 0  , 0  ,
+    0  , 0  , 1  , 0  , 0  ,
+    0  , 0  , 0  , 0  , 0  ,
+    0  , 0  , 1  , 0  , 0 );
+
+
+
   char my_string[] = "! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! !  ! ! ! ! !  !! !  ! ! ! !  !!!!! ! ! ! ! ! !!!!!!!!!!!!!!!!!!!!!!!!!!";
   gfx_print(my_string, &font, virtualWidth, virtualHeight, frameBuffer);
 }
